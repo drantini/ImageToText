@@ -53,7 +53,6 @@ namespace ImageToText
                 inputImage.Source = new BitmapImage(new Uri(fd.FileName));
                 inputBitmap = BitmapImage2Bitmap(new BitmapImage(new Uri(fd.FileName)));
                 was_uploaded = true;
-
             }
         }
 
