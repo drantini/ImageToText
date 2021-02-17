@@ -20,7 +20,6 @@
             <ComboBoxItem Content="PDF"/>
         </ComboBox>
         
-        
         <Label Content="Type" HorizontalAlignment="Left" Margin="662,74,0,0" VerticalAlignment="Top"/>
 
 
