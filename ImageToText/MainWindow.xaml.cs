@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,7 +19,6 @@ namespace ImageToText
         private Bitmap inputBitmap;
         private bool was_converted = false;
         private bool was_uploaded = false;
-        private bool denoise = false;
         private string pdf_path;
         private int selectedType = -1;
         public MainWindow()
@@ -43,7 +33,7 @@ namespace ImageToText
                 BitmapEncoder enc = new BmpBitmapEncoder();
                 enc.Frames.Add(BitmapFrame.Create(bitmapImage));
                 enc.Save(outStream);
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(outStream);
+                Bitmap bitmap = new Bitmap(outStream);
 
                 return new Bitmap(bitmap);
             }
@@ -51,26 +41,22 @@ namespace ImageToText
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             selectedType = Type.SelectedIndex;
-
-            if (selectedType == 0)
+            OpenFileDialog fd = new OpenFileDialog();
+            if (fd.ShowDialog() == true)
             {
-                OpenFileDialog fd = new OpenFileDialog();
-                if (fd.ShowDialog() == true)
+                if (selectedType == 0)
                 {
                     inputImage.Source = new BitmapImage(new Uri(fd.FileName));
                     inputBitmap = BitmapImage2Bitmap(new BitmapImage(new Uri(fd.FileName)));
                     was_uploaded = true;
                 }
-            }
-            else if (selectedType == 1)
-            {
-                OpenFileDialog fd = new OpenFileDialog();
-                if (fd.ShowDialog() == true)
+                else if (selectedType == 1)
                 {
                     pdf_path = fd.FileName;
                     was_uploaded = true;
                 }
             }
+
 
         }
 

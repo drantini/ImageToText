@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageToText"
         mc:Ignorable="d"
-        Title="ImageToText" Height="450" Width="800">
+        Title="ImageToText" Height="450" Width="800" WindowStartupLocation="Manual" TitleCharacterCasing="Normal">
     <Grid>
         <Button x:Name="ConvertButton" Content="CONVERT" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="676,280,10,107"  Width="106" Height="32" FontSize="14" Click="Button_Click_1"/>
         <Button x:Name="SaveButton" Content="SAVE TO TXT" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="676,317,10,70"  Width="106" Height="32" FontSize="14" Click="SaveButton_Click" />
