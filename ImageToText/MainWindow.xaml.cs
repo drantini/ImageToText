@@ -29,9 +29,12 @@ namespace ImageToText
         private bool was_converted = false;
         private bool was_uploaded = false;
         private bool denoise = false;
+        private string pdf_path;
+        private int selectedType = -1;
         public MainWindow()
         {
             InitializeComponent();
+            Type.SelectedIndex = 0;
         }
         private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
         {
@@ -47,13 +50,28 @@ namespace ImageToText
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fd = new OpenFileDialog();
-            if (fd.ShowDialog() == true)
+            selectedType = Type.SelectedIndex;
+
+            if (selectedType == 0)
             {
-                inputImage.Source = new BitmapImage(new Uri(fd.FileName));
-                inputBitmap = BitmapImage2Bitmap(new BitmapImage(new Uri(fd.FileName)));
-                was_uploaded = true;
+                OpenFileDialog fd = new OpenFileDialog();
+                if (fd.ShowDialog() == true)
+                {
+                    inputImage.Source = new BitmapImage(new Uri(fd.FileName));
+                    inputBitmap = BitmapImage2Bitmap(new BitmapImage(new Uri(fd.FileName)));
+                    was_uploaded = true;
+                }
             }
+            else if (selectedType == 1)
+            {
+                OpenFileDialog fd = new OpenFileDialog();
+                if (fd.ShowDialog() == true)
+                {
+                    pdf_path = fd.FileName;
+                    was_uploaded = true;
+                }
+            }
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -62,7 +80,16 @@ namespace ImageToText
             {
                 using (var input = new OcrInput())
                 {
-                    input.AddImage(inputBitmap);
+                    if (selectedType == 0)
+                    {
+                        input.AddImage(inputBitmap);
+                    }
+                    else
+                    {
+                        input.AddPdf(pdf_path);
+                        pdf_path = null;
+                    }
+                    
                     input.Deskew();
                     if (DeNoise.IsChecked == true)
                     {

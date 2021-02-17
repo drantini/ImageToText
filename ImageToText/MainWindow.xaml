@@ -13,8 +13,14 @@
 
         <Button x:Name="UploadButton" Content="UPLOAD" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="676,243,10,144"  Width="106" Height="32" FontSize="14" Click="Button_Click"/>
         <Image x:Name="inputImage" HorizontalAlignment="Left" Height="228" Margin="115,10,0,0" VerticalAlignment="Top" Width="501" Stretch="Fill"/>
-        <TextBox x:Name="OutputText" HorizontalAlignment="Left" Height="166" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="Output text will be here!" VerticalAlignment="Top" Width="606" Margin="10,243,0,0"/>
+        <TextBox x:Name="OutputText" HorizontalAlignment="Left" Height="166" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="Output text will be here!" VerticalAlignment="Top" Width="623" Margin="10,243,0,0" IsManipulationEnabled="True"/>
         <CheckBox x:Name="DeNoise" ToolTip="Removes digital noise. Should only be used where noise is expected." Content="DeNoise" HorizontalAlignment="Left" Margin="676,220,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="Type" HorizontalAlignment="Left" Margin="662,100,0,0" VerticalAlignment="Top" Width="120" >
+            <ComboBoxItem Content="Image"/>
+            <ComboBoxItem Content="PDF"/>
+        </ComboBox>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="662,74,0,0" VerticalAlignment="Top"/>
+
 
 
     </Grid>
